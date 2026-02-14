@@ -70,22 +70,13 @@ const Generate = () => {
                   </div>
 
                   {/* Aspect ratio selection */}
-                  <div className="space-y-2">
-                    <label htmlFor="aspectRatio" className="block text-sm font-medium text-white">
-                      Aspect Ratio
-                    </label>
-                    <select
-                      id="aspectRatio"
-                      value={aspectRatio}
-                      onChange={(e) => setAspectRatio(e.target.value)}
-                      className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-pink-500 appearance-none cursor-pointer"
-                      style={{ backgroundImage: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"white\" stroke-width=\"2\"><polyline points=\"6 9 12 15 18 9\"></polyline></svg>')", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 8px center', backgroundSize: '20px', paddingRight: '32px' }}
-                    >
-                      <option value="1:1" style={{backgroundColor: '#ec4899', color: 'white'}}>1:1 (Square)</option>
-                      <option value="16:9" style={{backgroundColor: '#ec4899', color: 'white'}}>16:9 (Widescreen)</option>
-                      <option value="4:5" style={{backgroundColor: '#ec4899', color: 'white'}}>4:5 (Portrait)</option>
-                    </select>
-                  </div>
+                 const [aspectRatio, setAspectRatio] = useState<AspectRatios>("1:1");
+
+<AspectRatioSelector 
+  selectedAspectRatio={aspectRatio} 
+  onChange={setAspectRatio} 
+/>
+
 
                   {/* Style selection */}
                   <div className="space-y-2">
