@@ -16,7 +16,7 @@ const Generate = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch existing thumbnail data if an ID is provided
+  
   useEffect(() => {
   if (!id) return;
 
@@ -42,14 +42,25 @@ const Generate = () => {
 
 
   // Generate new thumbnail
-  const handleGenerate = () => {
-    setLoading(true);
-    setError(null);
-    setTimeout(() => {
-      setThumbnail('generated');
-      setLoading(false);
-    }, 2000);
-  };
+ const handleGenerate = () => {
+  setLoading(true);
+  setError(null);
+
+  setTimeout(() => {
+    // Map aspect ratios to placeholder images
+    const aspectMap: Record<string, string> = {
+      "1:1": "https://via.placeholder.com/400x400.png?text=Generated",
+      "16:9": "https://via.placeholder.com/600x337.png?text=Generated",
+      "4:5": "https://via.placeholder.com/320x400.png?text=Generated",
+    };
+
+    // Use dummyThumbnails if available, otherwise fallback to placeholder
+    const thumbnailData = dummyThumbnails.find((t) => String(t._id) === String(id));
+    setThumbnail(thumbnailData?.image_url || aspectMap[aspectRatio]);
+
+    setLoading(false);
+  }, 2000);
+};
 
   return (
     <>
