@@ -9,6 +9,10 @@ import MyGeneration from "./pages/MyGeneration";
 import Generate from "./pages/Generate";
 import Login from "./components/Login";
 import { use, useEffect } from "react";
+import Thumbnails from "./pages/Thumbnail";
+import { Link } from "react-router-dom";
+
+
 
 export default function App() {
     const {pathname} = useLocation();
@@ -20,6 +24,14 @@ export default function App() {
         <>
             <LenisScroll />
             <Navbar />
+            
+  <Link to="/">Home</Link>
+  <Link to="/generate">Generate</Link>
+  <Link to="/my-generation">My Generation</Link>
+  <Link to="/preview">Preview</Link>
+  <Link to="/login">Login</Link>
+  <Link to="/thumbnails">Thumbnails</Link> {/* NEW */}
+
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/generate" element={<Generate />} />
