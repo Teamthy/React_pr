@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { dummyThumbnails, type IThumbnail } from "../assets/assets";
 import SoftBackdrop from "../components/SoftBackdrop";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // ✅ import Link
+import { ArrowUpRightIcon } from "lucide-react";
 
 const MyGeneration = () => {
   const navigate = useNavigate();
@@ -109,7 +110,6 @@ const MyGeneration = () => {
 
                   <h2 className="text-white font-semibold">{thumb.title}</h2>
 
-                  {/* ✅ Metadata tags */}
                   <div className="flex flex-wrap gap-2 text-xs text-zinc-400">
                     <span className="px-2 py-0.5 rounded bg-white/8">
                       {thumb.style}
@@ -125,8 +125,7 @@ const MyGeneration = () => {
                     {new Date(thumb.created_at).toDateString()}
                   </p>
 
-                  {/* ✅ Action buttons */}
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 items-center">
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
@@ -145,6 +144,15 @@ const MyGeneration = () => {
                     >
                       Delete
                     </button>
+                    {/* ✅ Preview link */}
+                    <Link
+                      to={`/preview?thumbnail_url=${thumb.image_url}&title=${thumb.title}`}
+                      target="_blank"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center justify-center"
+                    >
+                      <ArrowUpRightIcon className="size-6 bg-black/50 p-1 rounded hover:bg-pink-600 transition-all" />
+                    </Link>
                   </div>
                 </motion.div>
               );
